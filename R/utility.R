@@ -1,3 +1,4 @@
+
 create_group_indices <- function(groups) {
   groups <- as.integer(as.factor(groups))
   G <- max(groups)

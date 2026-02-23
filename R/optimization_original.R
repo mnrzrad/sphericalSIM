@@ -128,12 +128,6 @@
 #'
 #' @export
 prox_group_lasso <- function(beta, group_idx, weights, lambda, step) {
-  # Use C++ version if enabled
-  if (getOption("sphericalSIM.use_cpp", TRUE)) {
-    return(prox_group_lasso_cpp(beta, group_idx, weights, lambda, step))
-  }
-  
-  # Original R implementation
   beta_new <- beta
   for (g in seq_along(group_idx)) {
     idx <- group_idx[[g]]
@@ -274,16 +268,6 @@ prox_group_lasso <- function(beta, group_idx, weights, lambda, step) {
 #' @export
 compute_objective <- function(beta, Theta, X, Y, knots, degree, Omega,
                               lambda, gamma, group_idx, weights) {
-  # Use C++ version if enabled
-  if (getOption("sphericalSIM.use_cpp", TRUE)) {
-    z <- as.vector(X %*% beta)
-    z_clip <- pmax(pmin(z, max(knots) - 1e-6), min(knots) + 1e-6)
-    B <- splineDesign(knots, z_clip, ord = degree + 1)
-    return(compute_objective_cpp(beta, Theta, X, Y, B, Omega,
-                                 lambda, gamma, group_idx, weights))
-  }
-  
-  # Original R implementation
   n <- nrow(X)
   q_minus_1 <- ncol(Theta)
 
@@ -444,16 +428,6 @@ compute_objective <- function(beta, Theta, X, Y, knots, degree, Omega,
 #' @importFrom splines splineDesign
 #' @export
 grad_beta <- function(beta, Theta, X, Y, knots, degree) {
-  # Use C++ version if enabled
-  if (getOption("sphericalSIM.use_cpp", TRUE)) {
-    z <- as.vector(X %*% beta)
-    z_clip <- pmax(pmin(z, max(knots) - 1e-6), min(knots) + 1e-6)
-    B <- splineDesign(knots, z_clip, ord = degree + 1)
-    B_deriv <- splineDesign(knots, z_clip, ord = degree + 1, derivs = 1)
-    return(grad_beta_cpp(beta, Theta, X, Y, B, B_deriv))
-  }
-  
-  # Original R implementation
   n <- nrow(X)
 
   z <- as.vector(X %*% beta)

@@ -8,66 +8,66 @@
 NULL
 
 inv_stereo_cpp <- function(u) {
-  .Call(`_sphericalSIM_inv_stereo_cpp`, u)
+    .Call(`_sphericalSIM_inv_stereo_cpp`, u)
 }
 
 jacobian_inv_stereo_cpp <- function(u) {
-  .Call(`_sphericalSIM_jacobian_inv_stereo_cpp`, u)
+    .Call(`_sphericalSIM_jacobian_inv_stereo_cpp`, u)
 }
 
 prox_group_lasso_cpp <- function(beta, group_idx, weights, lambda, step) {
-  .Call(`_sphericalSIM_prox_group_lasso_cpp`, beta, group_idx, weights, lambda, step)
+    .Call(`_sphericalSIM_prox_group_lasso_cpp`, beta, group_idx, weights, lambda, step)
 }
 
 compute_group_penalty_cpp <- function(beta, group_idx, weights, lambda) {
-  .Call(`_sphericalSIM_compute_group_penalty_cpp`, beta, group_idx, weights, lambda)
+    .Call(`_sphericalSIM_compute_group_penalty_cpp`, beta, group_idx, weights, lambda)
 }
 
 grad_beta_cpp <- function(beta, Theta, X, Y, B, B_deriv) {
-  .Call(`_sphericalSIM_grad_beta_cpp`, beta, Theta, X, Y, B, B_deriv)
+    .Call(`_sphericalSIM_grad_beta_cpp`, beta, Theta, X, Y, B, B_deriv)
 }
 
 compute_objective_cpp <- function(beta, Theta, X, Y, B, Omega, lambda, gamma, group_idx, weights) {
-  .Call(`_sphericalSIM_compute_objective_cpp`, beta, Theta, X, Y, B, Omega, lambda, gamma, group_idx, weights)
+    .Call(`_sphericalSIM_compute_objective_cpp`, beta, Theta, X, Y, B, Omega, lambda, gamma, group_idx, weights)
 }
 
 compute_group_norms_cpp <- function(beta, group_idx) {
-  .Call(`_sphericalSIM_compute_group_norms_cpp`, beta, group_idx)
+    .Call(`_sphericalSIM_compute_group_norms_cpp`, beta, group_idx)
 }
 
 compute_prediction_cpp <- function(B_new, Theta) {
-  .Call(`_sphericalSIM_compute_prediction_cpp`, B_new, Theta)
+    .Call(`_sphericalSIM_compute_prediction_cpp`, B_new, Theta)
 }
 
 fast_matvec <- function(A, x) {
-  .Call(`_sphericalSIM_fast_matvec`, A, x)
+    .Call(`_sphericalSIM_fast_matvec`, A, x)
 }
 
 compute_objectives_lambda_path <- function(X, Y, beta_mat, Theta_cube, B_array, Omega, lambdas, gamma, group_idx, weights) {
-  .Call(`_sphericalSIM_compute_objectives_lambda_path`, X, Y, beta_mat, Theta_cube, B_array, Omega, lambdas, gamma, group_idx, weights)
+    .Call(`_sphericalSIM_compute_objectives_lambda_path`, X, Y, beta_mat, Theta_cube, B_array, Omega, lambdas, gamma, group_idx, weights)
 }
 
 adaptive_prox_cpp <- function(beta, group_idx, adaptive_weights, lambda, step) {
-  .Call(`_sphericalSIM_adaptive_prox_cpp`, beta, group_idx, adaptive_weights, lambda, step)
+    .Call(`_sphericalSIM_adaptive_prox_cpp`, beta, group_idx, adaptive_weights, lambda, step)
 }
 
 compute_adaptive_weights_from_beta <- function(beta_init, group_idx, gamma_power, epsilon = 1e-4) {
-  .Call(`_sphericalSIM_compute_adaptive_weights_from_beta`, beta_init, group_idx, gamma_power, epsilon)
+    .Call(`_sphericalSIM_compute_adaptive_weights_from_beta`, beta_init, group_idx, gamma_power, epsilon)
 }
 
 compute_rss_cpp <- function(Y_pred, Y_true) {
-  .Call(`_sphericalSIM_compute_rss_cpp`, Y_pred, Y_true)
+    .Call(`_sphericalSIM_compute_rss_cpp`, Y_pred, Y_true)
 }
 
 batch_predict_cpp <- function(X, beta, B, Theta) {
-  .Call(`_sphericalSIM_batch_predict_cpp`, X, beta, B, Theta)
+    .Call(`_sphericalSIM_batch_predict_cpp`, X, beta, B, Theta)
 }
 
 compute_cv_errors_cpp <- function(X_test, Y_test, beta_list, Theta_list, B_list) {
-  .Call(`_sphericalSIM_compute_cv_errors_cpp`, X_test, Y_test, beta_list, Theta_list, B_list)
+    .Call(`_sphericalSIM_compute_cv_errors_cpp`, X_test, Y_test, beta_list, Theta_list, B_list)
 }
 
 proximal_gradient_step <- function(beta_current, Theta, X, Y, B, B_deriv, group_idx, weights, lambda, step_size, max_backtrack = 20L) {
-  .Call(`_sphericalSIM_proximal_gradient_step`, beta_current, Theta, X, Y, B, B_deriv, group_idx, weights, lambda, step_size, max_backtrack)
+    .Call(`_sphericalSIM_proximal_gradient_step`, beta_current, Theta, X, Y, B, B_deriv, group_idx, weights, lambda, step_size, max_backtrack)
 }
 
