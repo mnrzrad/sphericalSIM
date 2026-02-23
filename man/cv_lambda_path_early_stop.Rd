@@ -22,9 +22,9 @@ cv_lambda_path_early_stop(
 )
 }
 \arguments{
-\item{X}{Design matrix (n × p)}
+\item{X}{Design matrix (n  x  p)}
 
-\item{Y}{Response matrix on unit sphere (n × q)}
+\item{Y}{Response matrix on unit sphere (n  x  q)}
 
 \item{group_idx}{List of length G, where each element contains indices of predictors in that group}
 
@@ -236,12 +236,12 @@ cat("True active groups:", data$active_groups, "\n")
 \references{
 - Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of
   Statistical Learning (2nd ed.). Springer.
-- Bühlmann, P., & van de Geer, S. (2011). Statistics for High-Dimensional
+- Buhlmann, P., & van de Geer, S. (2011). Statistics for High-Dimensional
   Data: Methods, Theory and Applications. Springer.
 }
 \seealso{
 \code{\link{cv_two_stage_adaptive}} for two-stage CV with gamma search,
 \code{\link{spherical_sim_group}} for model fitting,
 \code{\link{predict_spherical}} for predictions,
-\code{\link{compute_lambda_max_with_weights}} for computing lambda_max
+\code{compute_lambda_max_with_weights} for computing lambda_max
 }

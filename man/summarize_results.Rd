@@ -13,39 +13,17 @@ or multiple calls to \code{run_single_simulation()}}
 \value{
 List with two components:
 \describe{
-  \item{metrics}{Data frame with one row per simulation containing all extracted metrics}
-  \item{summary}{Data frame with summary statistics (mean, SD, median) for each metric}
-}
-
-List with two components:
-\describe{
   \item{metrics}{Data frame with one row per simulation containing all metrics}
   \item{summary}{Data frame with summary statistics for each metric category}
 }
 }
 \description{
-Computes summary statistics across multiple simulation replications and
-prints formatted tables of performance metrics.
+Computes comprehensive summary statistics from existing simulation results,
+including metrics that may not have been computed originally. This function
+can work with both old and new result formats by computing missing metrics
+from available data.
 }
 \details{
-The function extracts key metrics from each simulation and computes:
-\itemize{
-  \item Mean, standard deviation, and median for continuous metrics
-  \item Convergence rate (percentage of simulations that converged)
-  \item Average number of iterations until convergence
-}
-
-Metrics summarized include:
-\describe{
-  \item{n_selected}{Number of groups selected by the model}
-  \item{TPR}{True positive rate for group selection}
-  \item{FPR}{False positive rate for group selection}
-  \item{beta_l2_error}{L2 error for index parameter estimation}
-  \item{angular_error}{Angular error between true and estimated beta (degrees)}
-  \item{link_mse}{Mean squared error of link function estimation}
-  \item{pred_error}{Prediction error on training data}
-}
-
 This function extracts or computes all evaluation metrics from Section 3:
 
 \strong{Coefficient Metrics (Section 3.1):}
@@ -71,35 +49,4 @@ This function extracts or computes all evaluation metrics from Section 3:
   \item Precision, Recall, F1, FPR: Computed from selected_groups and true_active_groups
   \item TP, FP, FN, TN: Confusion matrix counts
 }
-}
-\examples{
-\dontrun{
-# After running simulation study
-results <- run_simulation_study(n_sim = 50)
-summary <- summarize_results(results)
-
-# Access detailed metrics
-head(summary$metrics)
-
-# Access summary statistics
-print(summary$summary)
-
-# Create custom plots
-library(ggplot2)
-ggplot(summary$metrics, aes(x = TPR)) +
-  geom_histogram(bins = 20) +
-  labs(title = "Distribution of True Positive Rates")
-
-# Check relationship between metrics
-with(summary$metrics, cor(TPR, angular_error))
-
-# Load and summarize saved results
-results <- readRDS("simulation_results.rds")
-summary <- summarize_results(results)
-}
-
-}
-\seealso{
-\code{\link{run_simulation_study}} for running simulations,
-\code{\link{run_single_simulation}} for individual simulation details
 }

@@ -131,7 +131,7 @@
 #'
 #' @seealso
 #' \code{\link{inv_stereo}} for inverse stereographic projection,
-#' \code{\link{create_group_indices}} for group structure creation,
+#' \code{create_group_indices} for group structure creation,
 #' \code{\link{run_single_simulation}} for using generated data in simulations,
 #' \code{\link{spherical_sim_group}} for fitting models to generated data
 #'

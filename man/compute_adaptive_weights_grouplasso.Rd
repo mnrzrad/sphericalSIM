@@ -272,5 +272,5 @@ cat("Group norms range: [",
 \code{\link{compute_adaptive_weights_fast}} for faster alternative method,
 \code{\link{cv_two_stage_adaptive}} for using adaptive weights in CV,
 \code{\link{spherical_sim_group}} for model fitting with weights,
-\code{\link{compute_lambda_max_with_weights}} for computing lambda_max
+\code{compute_lambda_max_with_weights} for computing lambda_max
 }

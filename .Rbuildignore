@@ -1,2 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^CPP_ACCELERATION_GUIDE\.md$
+^CPP_OPTIMIZATION_SUMMARY\.md$
+^IMPLEMENTATION_SUMMARY\.md$
+^install_and_test\.R$
+^\.git$
+^\.gitignore$

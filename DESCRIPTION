@@ -7,7 +7,7 @@ Authors@R: person("Your", "Name", email = "your.email@example.com",
 Description: Implements spherical single-index models with group lasso and 
     adaptive group lasso penalties. Includes B-spline approximation, inverse
     stereographic projection, and efficient cross-validation with early stopping.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: 

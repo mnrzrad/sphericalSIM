@@ -29,9 +29,9 @@ cv_two_stage_adaptive(
 )
 }
 \arguments{
-\item{X}{Design matrix (n × p)}
+\item{X}{Design matrix (n  x  p)}
 
-\item{Y}{Response matrix on unit sphere (n × q)}
+\item{Y}{Response matrix on unit sphere (n  x  q)}
 
 \item{group_idx}{List of length G, where each element contains indices of predictors in that group}
 
@@ -39,7 +39,7 @@ cv_two_stage_adaptive(
 
 \item{adaptive_method}{Method for computing adaptive weights: "grouplasso" or "fast" (default "grouplasso")}
 
-\item{adaptive_gamma_power}{Power for adaptive weight computation: w_g = ||β_init_g||^{-γ} (default 1)}
+\item{adaptive_gamma_power}{Power for adaptive weight computation: w_g = ||beta_init_g||^{-gamma} (default 1)}
 
 \item{initial_lambda_fraction}{Fraction of lambda_max for initial group lasso fit when computing adaptive weights (default 0.3)}
 
@@ -101,7 +101,7 @@ adaptive weights to improve variable selection.
   \item \strong{Adaptive Weights} (if use_adaptive = TRUE):
     \itemize{
       \item Fit initial model to compute group-wise coefficient norms
-      \item Compute weights: w_g = ||β_init_g||^{-γ} * sqrt(|G_g|)
+      \item Compute weights: w_g = ||beta_init_g||^{-gamma} * sqrt(|G_g|)
       \item Groups with smaller initial estimates get larger penalties
     }
   \item \strong{Parameter Range Computation}:
@@ -119,7 +119,7 @@ adaptive weights to improve variable selection.
     }
   \item \strong{Stage 2 - Fine Gamma Search}:
     \itemize{
-      \item Create fine grid around best gamma from Stage 1 (±3x range)
+      \item Create fine grid around best gamma from Stage 1 (+/-3x range)
       \item Re-evaluate with ngamma_fine values
       \item Find optimal (lambda, gamma) on refined grid
       \item Early stopping with gamma_patience
@@ -146,7 +146,7 @@ Early stopping occurs at two levels:
 \strong{Computational Efficiency:}
 The two-stage approach is much faster than full grid search:
 \itemize{
-  \item Full grid: O(nlambda × (ngamma_coarse + ngamma_fine)) evaluations
+  \item Full grid: O(nlambda  x  (ngamma_coarse + ngamma_fine)) evaluations
   \item Two-stage with early stopping: Often < 50% of full grid
   \item Lambda sequence evaluated in decreasing order (sparse to dense)
   \item Early stopping saves time on unpromising parameter regions

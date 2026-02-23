@@ -5,8 +5,8 @@
 #' lasso in spherical single-index models. Includes constraints on group selection
 #' and robust error handling.
 #'
-#' @param X Design matrix (n × p)
-#' @param Y Response matrix on unit sphere (n × q)
+#' @param X Design matrix (n  x  p)
+#' @param Y Response matrix on unit sphere (n  x  q)
 #' @param group_idx List of length G, where each element contains indices of predictors in that group
 #' @param lambda_seq Vector of lambda values to evaluate (typically in decreasing order)
 #' @param gamma Roughness penalty parameter for link function smoothness
@@ -198,14 +198,14 @@
 #' @references
 #' - Hastie, T., Tibshirani, R., & Friedman, J. (2009). The Elements of
 #'   Statistical Learning (2nd ed.). Springer.
-#' - Bühlmann, P., & van de Geer, S. (2011). Statistics for High-Dimensional
+#' - Buhlmann, P., & van de Geer, S. (2011). Statistics for High-Dimensional
 #'   Data: Methods, Theory and Applications. Springer.
 #'
 #' @seealso
 #' \code{\link{cv_two_stage_adaptive}} for two-stage CV with gamma search,
 #' \code{\link{spherical_sim_group}} for model fitting,
 #' \code{\link{predict_spherical}} for predictions,
-#' \code{\link{compute_lambda_max_with_weights}} for computing lambda_max
+#' \code{compute_lambda_max_with_weights} for computing lambda_max
 #'
 #' @export
 cv_lambda_path_early_stop <- function(X, Y, group_idx,
@@ -301,7 +301,7 @@ cv_lambda_path_early_stop <- function(X, Y, group_idx,
     }
 
     if (verbose && is.finite(cv_errors[i])) {
-      cat(sprintf("[%d/%d] λ=%.5f: CV=%.4f, n_sel=%.1f (valid: %d/%d)\n",
+      cat(sprintf("[%d/%d] lambda=%.5f: CV=%.4f, n_sel=%.1f (valid: %d/%d)\n",
                   i, nlambda, lam, cv_errors[i], n_selected_vec[i],
                   n_valid_folds[i], n_folds))
     }
@@ -368,12 +368,12 @@ cv_lambda_path_early_stop <- function(X, Y, group_idx,
 #' computes adaptive weights to improve variable selection performance. Features
 #' early stopping at both stages for computational efficiency.
 #'
-#' @param X Design matrix (n × p)
-#' @param Y Response matrix on unit sphere (n × q)
+#' @param X Design matrix (n  x  p)
+#' @param Y Response matrix on unit sphere (n  x  q)
 #' @param group_idx List of length G, where each element contains indices of predictors in that group
 #' @param use_adaptive Use adaptive group lasso weights (default TRUE)
 #' @param adaptive_method Method for computing adaptive weights: "grouplasso" or "fast" (default "grouplasso")
-#' @param adaptive_gamma_power Power for adaptive weight computation: w_g = ||β_init_g||^{-γ} (default 1)
+#' @param adaptive_gamma_power Power for adaptive weight computation: w_g = ||beta_init_g||^{-gamma} (default 1)
 #' @param initial_lambda_fraction Fraction of lambda_max for initial group lasso fit when computing adaptive weights (default 0.3)
 #' @param nlambda Number of lambda values in search grid (default 12)
 #' @param ngamma_coarse Number of gamma values in coarse stage (default 5)
@@ -400,7 +400,7 @@ cv_lambda_path_early_stop <- function(X, Y, group_idx,
 #'   \item \strong{Adaptive Weights} (if use_adaptive = TRUE):
 #'     \itemize{
 #'       \item Fit initial model to compute group-wise coefficient norms
-#'       \item Compute weights: w_g = ||β_init_g||^{-γ} * sqrt(|G_g|)
+#'       \item Compute weights: w_g = ||beta_init_g||^{-gamma} * sqrt(|G_g|)
 #'       \item Groups with smaller initial estimates get larger penalties
 #'     }
 #'   \item \strong{Parameter Range Computation}:
@@ -418,7 +418,7 @@ cv_lambda_path_early_stop <- function(X, Y, group_idx,
 #'     }
 #'   \item \strong{Stage 2 - Fine Gamma Search}:
 #'     \itemize{
-#'       \item Create fine grid around best gamma from Stage 1 (±3x range)
+#'       \item Create fine grid around best gamma from Stage 1 (+/-3x range)
 #'       \item Re-evaluate with ngamma_fine values
 #'       \item Find optimal (lambda, gamma) on refined grid
 #'       \item Early stopping with gamma_patience
@@ -445,7 +445,7 @@ cv_lambda_path_early_stop <- function(X, Y, group_idx,
 #' \strong{Computational Efficiency:}
 #' The two-stage approach is much faster than full grid search:
 #' \itemize{
-#'   \item Full grid: O(nlambda × (ngamma_coarse + ngamma_fine)) evaluations
+#'   \item Full grid: O(nlambda  x  (ngamma_coarse + ngamma_fine)) evaluations
 #'   \item Two-stage with early stopping: Often < 50% of full grid
 #'   \item Lambda sequence evaluated in decreasing order (sparse to dense)
 #'   \item Early stopping saves time on unpromising parameter regions
@@ -764,7 +764,7 @@ cv_two_stage_adaptive <- function(X, Y, group_idx,
     stage1_results[[i]] <- cv_lam
 
     if (verbose) {
-      cat(sprintf("  Best: λ=%.5f, CV=%.4f\n",
+      cat(sprintf("  Best: lambda=%.5f, CV=%.4f\n",
                   cv_lam$best_lambda, cv_lam$best_error))
     }
 
@@ -829,7 +829,7 @@ cv_two_stage_adaptive <- function(X, Y, group_idx,
     stage2_results[[i]] <- cv_lam
 
     if (verbose) {
-      cat(sprintf("  Best: λ=%.5f, CV=%.4f\n",
+      cat(sprintf("  Best: lambda=%.5f, CV=%.4f\n",
                   cv_lam$best_lambda, cv_lam$best_error))
     }
 
